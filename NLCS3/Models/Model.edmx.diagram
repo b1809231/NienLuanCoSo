@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="40940f00704b49dbb648143fd69e5151" Name="Diagram1">
+        <EntityTypeShape EntityType="NLCS_QLHDCDModel.BOMON" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NLCS_QLHDCDModel.CHITIETCHUCVU" Width="1.5" PointX="7.5" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NLCS_QLHDCDModel.CHITIETHOATDONG" Width="1.5" PointX="10.5" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NLCS_QLHDCDModel.CHUCVU" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NLCS_QLHDCDModel.HOATDONG" Width="1.5" PointX="8.25" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NLCS_QLHDCDModel.KHENTHUONGKYLUAT" Width="1.5" PointX="7.5" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NLCS_QLHDCDModel.KHOA" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NLCS_QLHDCDModel.sysdiagram" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="NLCS_QLHDCDModel.VIENCHUC" Width="1.5" PointX="5.25" PointY="3.5" IsExpanded="true" />
+        <AssociationConnector Association="NLCS_QLHDCDModel.FK_BOMON_RELATIONS_KHOA" ManuallyRouted="false" />
+        <AssociationConnector Association="NLCS_QLHDCDModel.FK_VIENCHUC_RELATIONS_BOMON" ManuallyRouted="false" />
+        <AssociationConnector Association="NLCS_QLHDCDModel.FK_CHITIETC_CHITIETCH_CHUCVU" ManuallyRouted="false" />
+        <AssociationConnector Association="NLCS_QLHDCDModel.FK_CHITIETC_CHITIETCH_VIENCHUC" ManuallyRouted="false" />
+        <AssociationConnector Association="NLCS_QLHDCDModel.FK_CHITIETH_CHITIETHO_HOATDONG" ManuallyRouted="false" />
+        <AssociationConnector Association="NLCS_QLHDCDModel.FK_CHITIETH_CHITIETHO_VIENCHUC" ManuallyRouted="false" />
+        <AssociationConnector Association="NLCS_QLHDCDModel.FK_KHENTHUO_NHAN_VIENCHUC" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

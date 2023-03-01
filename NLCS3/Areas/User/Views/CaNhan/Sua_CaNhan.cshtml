@@ -1,0 +1,155 @@
+﻿@model NLCS3.Models.VIENCHUC
+
+@{
+    ViewBag.Title = "Sua_CaNhan";
+    Layout = "~/Areas/User/Views/Shared/_Layout.cshtml";
+}
+<br />
+<br />
+<br />
+<center>
+    <div class="d-block border" style="width:700px;background-color:lightblue">
+        <br />
+        <h2>CHỈNH SỬA THÔNG TIN </h2>
+        <hr />
+        @using (Html.BeginForm("Sua_CaNhan", "CaNhan", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="font-weight:bold; width:400px">
+                        Mã viên chức:
+                    </label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.VC_MA, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.VC_MA, "", new { @class = "text-danger" })
+                    </div>
+                </div>             
+                <hr />
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="font-weight: bold;width: 400px">
+                        Bộ môn:
+                    </label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.BOMON.BM_TEN, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.VC_ANH, "", new { @class = "text-danger" })
+                    </div>
+                </div>             
+                <hr />
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="font-weight:bold;width:400px">
+                        Ảnh:
+                    </label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.VC_ANH, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.VC_ANH, "", new { @class = "text-danger" })
+                    </div>
+                </div>               
+                <hr />
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="font-weight: bold;width: 400px">
+                        Họ và tên:
+                    </label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.VC_HOTEN, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.VC_HOTEN, "", new { @class = "text-danger" })
+                    </div>
+                </div>               
+                <hr />
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="font-weight: bold;width: 400px">
+                        Ngày sinh:
+                    </label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.VC_NGAYSINH, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.VC_NGAYSINH, "", new { @class = "text-danger" })
+                    </div>
+                </div>                
+                <hr />
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="font-weight: bold;width: 400px">
+                        Giới tính:
+                    </label>
+                    <div class="col-md-10">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.VC_GIOITINH)
+                            @Html.ValidationMessageFor(model => model.VC_GIOITINH, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>                
+                <hr />
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="font-weight: bold;width: 400px">
+                        Địa chỉ:
+                    </label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.VC_DIACHI, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.VC_DIACHI, "", new { @class = "text-danger" })
+                    </div>
+                </div>                
+                <hr />
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="font-weight: bold;width: 400px">
+                        Số điện thoại:
+                    </label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.VC_SDT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.VC_SDT, "", new { @class = "text-danger" })
+                    </div>
+                </div>              
+                <hr />
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="font-weight: bold;width: 400px">
+                        Email:
+                    </label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.VC_EMAIL, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.VC_EMAIL, "", new { @class = "text-danger" })
+                    </div>
+                </div>                
+                <hr />
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="font-weight: bold;width: 400px">
+                        Lương:
+                    </label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.VC_LUONG, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.VC_LUONG, "", new { @class = "text-danger" })
+                    </div>
+                </div>              
+                <hr />
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="font-weight: bold;width: 400px">
+                        Quyền sử dụng:
+                    </label>
+                    <div class="col-md-10">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.VC_QUYENSD, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                            @Html.ValidationMessageFor(model => model.VC_QUYENSD, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>               
+                <hr />
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="font-weight: bold;width: 400px">
+                        Mật khẩu:
+                    </label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.VC_MATKHAU, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.VC_MATKHAU, " Yêu cầu nhập mật khẩu để xác nhận!", new { @class = "text-danger" })
+                    </div>
+                </div>               
+                <hr />
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="font-weight: bold;width: 400px">
+                        <input type="submit" value="Save" class="btn btn-default" style="background-color:antiquewhite;" /> |
+                        @Html.ActionLink("Xem lại thông tin", "ThongTinCaNhan")
+                    </label>                    
+                    <hr />
+                </div>
+            </div>
+
+        }
+    </div>
+</center>

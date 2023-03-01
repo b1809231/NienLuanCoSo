@@ -1,0 +1,55 @@
+﻿@model NLCS3.Models.CHITIETHOATDONG
+
+@{
+    ViewBag.Title = "edit_cthd";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>CHITIETHOATDONG</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label class="control-label col-md-2" style="font-weight:bold">
+                Mã viên chức:
+            </label>
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.VC_MA, ViewBag.CateList1 as SelectList, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" style="font-weight:bold">
+                Mã bộ môn:
+            </label>
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.HD_MA, ViewBag.CateList as SelectList, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" style="font-weight:bold">
+                Ghi chú
+            </label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.GHICHU, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.GHICHU, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" style="background-color:burlywood" /> |
+            @Html.ActionLink("Về danh sách", "list_cthd")
+        </div>
+    </div>
+}
+
+<div>
+    
+</div>

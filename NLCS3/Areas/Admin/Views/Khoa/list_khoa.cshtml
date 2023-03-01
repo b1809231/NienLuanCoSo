@@ -1,0 +1,57 @@
+﻿@model IEnumerable<NLCS3.Models.KHOA>
+
+@{
+    ViewBag.Title = "list_khoa";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="page-header">
+        <div class="container-fluid">
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/Admin/Home/Index">Trang chủ</a></li>
+                <li class="breadcrumb-item ">Xem thêm</li>
+                <li class="breadcrumb-item active">Khoa</li>
+            </ul>
+        </div>
+    </div>
+<div class="col-lg-12">
+    <div class="block">
+        <p>
+            @Html.ActionLink("Thêm mới", "create_khoa")
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    Mã khoa
+                </th>
+                <th>
+                    Tên khoa
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.K_MA)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.K_TEN)
+                    </td>
+                    <td>
+                        <p class="btn btn-primary" style="background-color:lightgreen">
+                            @Html.ActionLink("Sửa", "edit_khoa", new { id = item.K_MA })
+                        </p>
+
+                        <p class="btn btn-primary" style="background-color: lightsalmon">
+                            @Html.ActionLink("Xóa", "delete_khoa", new { id = item.K_MA })
+                        </p>
+                    </td>
+                </tr>
+            }
+
+        </table>
+</div>
+</div>

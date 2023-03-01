@@ -1,0 +1,81 @@
+﻿@model NLCS3.Models.HOATDONG
+
+@{
+    ViewBag.Title = "delete_hoatdong";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-lg-12">
+    <div class="block">
+        <div class="panel-heading" style="font-weight:bold;font-size:20px">
+            <img src="~/Content/Image/error.png" style=" width:80px ;height: 80px" />
+            Bạn có muốn xóa?
+        </div>
+
+
+        <table class="table">
+            <tr>
+                <td style="font-weight:bold">
+                    Mã viên chức:
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.HD_MA)
+                </td>
+            </tr>
+
+            <tr>
+                <td style="font-weight:bold">
+                    Họ và tên:
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.BM_MA)
+                </td>
+            </tr>
+            <tr>
+                <td style="font-weight:bold">
+                    Ngày sinh:
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.HD_TEN)
+                </td>
+            </tr>
+            <tr>
+                <td style="font-weight:bold">
+                    Giới tính:
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.HD_MOTA)
+                </td>
+            </tr>
+            <tr>
+                <td style="font-weight:bold">
+                    Địa chỉ:
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.HD_NGAYDIENRA)
+                </td>
+            </tr>
+            <tr>
+                <td style="font-weight:bold">
+                    Số điện thoại:
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.HD_FILE)
+                </td>
+            </tr>
+        </table>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <input type="submit" value="Delete" class="btn btn-default" style="background-color:antiquewhite;" /> |
+                    @Html.ActionLink("Về danh sách", "list_hoatdong")
+                </div>
+            }
+
+       
+    </div>
+</div>
+

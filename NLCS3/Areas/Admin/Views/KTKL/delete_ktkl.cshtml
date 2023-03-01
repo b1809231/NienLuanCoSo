@@ -1,0 +1,60 @@
+﻿@model NLCS3.Models.KHENTHUONGKYLUAT
+
+@{
+    ViewBag.Title = "delete_ktkl";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel-heading" style="font-weight:bold;font-size:20px">
+    <img src="~/Content/Image/error.png" width="80px" height="80px" />
+    Bạn có muốn xóa?
+</div>
+<div>
+    <h4>KHENTHUONGKYLUAT</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Mã
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KT_MA)
+        </dd>
+
+        <dt>
+            Viên chức
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VC_MA)
+        </dd>
+
+        <dt>
+            Nội dung
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KT_NOIDUNG)
+        </dd>
+
+        <dt>
+            Thưởng
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KT_THUONG)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" style="background-color:antiquewhite;" /> |
+            @Html.ActionLink("Về danh sách", "list_ktkl")
+        </div>
+    }
+</div>

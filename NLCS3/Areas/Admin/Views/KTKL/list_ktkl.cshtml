@@ -1,0 +1,76 @@
+﻿@model IEnumerable<NLCS3.Models.KHENTHUONGKYLUAT>
+
+@{
+    ViewBag.Title = "list_ktkl";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="page-header">
+    <div class="container-fluid">
+        <div class="container-fluid">
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/Admin/Home/Index">Trang chủ</a></li>
+                <li class="breadcrumb-item ">Quản lý</li>
+                <li class="breadcrumb-item active">KTKL</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="col-lg-12">
+    <div class="block" style="background-color:lightgray; color:black">
+        <p>
+            <br />
+            <h2 style="text-align:center">DANH  SÁCH </h2>
+        </p>
+
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+        <table class="table" style="background-color:lightgray; color:black">
+            <tr>
+                <th>
+                    Mã
+                </th>
+                <th>
+                    Viên chức nhận
+                </th>
+                <th>
+                    Nội dung
+                </th>
+                <th>
+                    Thưởng
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.KT_MA)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.VIENCHUC.VC_HOTEN)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.KT_NOIDUNG)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.KT_THUONG)
+                    </td>
+                    <td>
+                        <p class="btn btn-primary" style="background-color:lightgreen">
+                            @Html.ActionLink("Sửa", "edit_ktkl", new { id = item.KT_MA })
+                        </p>
+
+                        <p class="btn btn-primary" style="background-color: lightsalmon">
+                            @Html.ActionLink("Xóa", "delete_ktkl", new { id = item.KT_MA })
+                        </p>
+                    </td>
+                </tr>
+            }
+
+        </table>
+        </div>
+</div>

@@ -1,0 +1,118 @@
+﻿@model IEnumerable<NLCS3.Models.VIENCHUC>
+
+@{
+    ViewBag.Title = "list_vienchuc";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="page-header">
+    <div class="container-fluid">
+        <div class="container-fluid">
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/Admin/Home/Index">Trang chủ</a></li>
+                <li class="breadcrumb-item ">Quản lý</li>
+                <li class="breadcrumb-item active">Viên chức</li>
+                <li style="text-align: right">
+                </li>
+            </ul>
+            @using (Html.BeginForm())
+            {
+                <p style="text-align:right">
+
+                    @Html.TextBox("search") <input type="submit" value="Tìm kiếm" style="border-radius: 5px ; background-color:beige" />
+                </p>
+            }
+        </div>
+    </div>
+</div>
+<div class="col-lg-12">
+    <div class="block" style="background-color:lightgray; color:black">
+        
+            <h2 style="text-align:center">DANH  SÁCH VIÊN CHỨC</h2>
+            <p class="btn btn-primary" style="background-color:antiquewhite;text-align:right">
+                @Html.ActionLink("Thêm", "create_vienchuc")
+            </p>
+            <table class="table" style="color:black">
+                <tr>
+                    <th style="text-align: center;">
+                        Mã viên chức
+                    </th>
+                    <th style="text-align:center">
+                        Ảnh đại diện
+                    </th>
+                    <th style="text-align:center">
+                        Họ và tên
+                    </th>
+                    <th style="text-align:center">
+                        Ngày sinh
+                    </th>
+                    <th>
+                        Giới tính
+                    </th>
+                    <th style="text-align:center">
+                        Địa chỉ
+                    </th>
+                    <th style="text-align:center">
+                        Số điện thoại
+                    </th>
+                    <th style="text-align:center">
+                        Email
+                    </th>
+                    <th>
+                        Bộ môn
+                    </th>
+
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.VC_MA)
+                        </td>
+
+                        <td>
+                            <img src="@Url.Content("~/Content/Image/VienChuc/"+item.VC_ANH)" style="width:60px; text-align:center;" />
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.VC_HOTEN)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.VC_NGAYSINH)
+                        </td>
+                        <td>
+                            @(item.VC_GIOITINH==false? "Nữ":"Nam")
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.VC_DIACHI)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.VC_SDT)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.VC_EMAIL)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BOMON.BM_TEN)
+                        </td>
+                        <td>
+                            <p class="btn btn-primary" style="background-color:azure">
+                                @Html.ActionLink("Xem", "details_vienchuc", new { id = item.VC_MA })
+                            </p>
+
+                            <p class="btn btn-primary" style="background-color:lightgreen">
+                                @Html.ActionLink("Sửa", "edit_vienchuc", new { id = item.VC_MA })
+                            </p>
+
+                            <p class="btn btn-primary" style="background-color: lightsalmon">
+                                @Html.ActionLink("Xóa", "delete_vienchuc", new { id = item.VC_MA })
+                            </p>
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>

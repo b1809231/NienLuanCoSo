@@ -1,0 +1,575 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="NLCS_QLHDCDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BOMON">
+          <Key>
+            <PropertyRef Name="BM_MA" />
+          </Key>
+          <Property Name="BM_MA" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="K_MA" Type="int" Nullable="false" />
+          <Property Name="BM_TEN" Type="nvarchar" MaxLength="60" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CHITIETCHUCVU">
+          <Key>
+            <PropertyRef Name="VC_MA" />
+            <PropertyRef Name="CV_MA" />
+          </Key>
+          <Property Name="VC_MA" Type="char" MaxLength="7" Nullable="false" />
+          <Property Name="CV_MA" Type="int" Nullable="false" />
+          <Property Name="NGAYBATDAUCHUCVU" Type="date" Nullable="false" />
+          <Property Name="NGAYKETTHUCCHUCVU" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CHITIETHOATDONG">
+          <Key>
+            <PropertyRef Name="VC_MA" />
+            <PropertyRef Name="HD_MA" />
+          </Key>
+          <Property Name="VC_MA" Type="char" MaxLength="7" Nullable="false" />
+          <Property Name="HD_MA" Type="int" Nullable="false" />
+          <Property Name="GHICHU" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="CHUCVU">
+          <Key>
+            <PropertyRef Name="CV_MA" />
+          </Key>
+          <Property Name="CV_MA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CV_TEN" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HOATDONG">
+          <Key>
+            <PropertyRef Name="HD_MA" />
+          </Key>
+          <Property Name="HD_MA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BM_MA" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="HD_TEN" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="HD_MOTA" Type="ntext" />
+          <Property Name="HD_SOTIET" Type="int" />
+          <Property Name="HD_NGAYDIENRA" Type="date" />
+          <Property Name="HD_FILE" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="KHENTHUONGKYLUAT">
+          <Key>
+            <PropertyRef Name="KT_MA" />
+          </Key>
+          <Property Name="KT_MA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VC_MA" Type="char" MaxLength="7" Nullable="false" />
+          <Property Name="KT_NOIDUNG" Type="ntext" />
+          <Property Name="KT_THUONG" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="KHOA">
+          <Key>
+            <PropertyRef Name="K_MA" />
+          </Key>
+          <Property Name="K_MA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="K_TEN" Type="nvarchar" MaxLength="60" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="VIENCHUC">
+          <Key>
+            <PropertyRef Name="VC_MA" />
+          </Key>
+          <Property Name="VC_MA" Type="char" MaxLength="7" Nullable="false" />
+          <Property Name="BM_MA" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="VC_ANH" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="VC_HOTEN" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="VC_NGAYSINH" Type="date" Nullable="false" />
+          <Property Name="VC_GIOITINH" Type="bit" Nullable="false" />
+          <Property Name="VC_DIACHI" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="VC_SDT" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="VC_EMAIL" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="VC_LUONG" Type="float" Nullable="false" />
+          <Property Name="VC_QUYENSD" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="VC_MATKHAU" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_BOMON_RELATIONS_KHOA">
+          <End Role="KHOA" Type="Self.KHOA" Multiplicity="1" />
+          <End Role="BOMON" Type="Self.BOMON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHOA">
+              <PropertyRef Name="K_MA" />
+            </Principal>
+            <Dependent Role="BOMON">
+              <PropertyRef Name="K_MA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CHITIETC_CHITIETCH_CHUCVU">
+          <End Role="CHUCVU" Type="Self.CHUCVU" Multiplicity="1" />
+          <End Role="CHITIETCHUCVU" Type="Self.CHITIETCHUCVU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CHUCVU">
+              <PropertyRef Name="CV_MA" />
+            </Principal>
+            <Dependent Role="CHITIETCHUCVU">
+              <PropertyRef Name="CV_MA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CHITIETC_CHITIETCH_VIENCHUC">
+          <End Role="VIENCHUC" Type="Self.VIENCHUC" Multiplicity="1" />
+          <End Role="CHITIETCHUCVU" Type="Self.CHITIETCHUCVU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VIENCHUC">
+              <PropertyRef Name="VC_MA" />
+            </Principal>
+            <Dependent Role="CHITIETCHUCVU">
+              <PropertyRef Name="VC_MA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CHITIETH_CHITIETHO_HOATDONG">
+          <End Role="HOATDONG" Type="Self.HOATDONG" Multiplicity="1" />
+          <End Role="CHITIETHOATDONG" Type="Self.CHITIETHOATDONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HOATDONG">
+              <PropertyRef Name="HD_MA" />
+            </Principal>
+            <Dependent Role="CHITIETHOATDONG">
+              <PropertyRef Name="HD_MA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CHITIETH_CHITIETHO_VIENCHUC">
+          <End Role="VIENCHUC" Type="Self.VIENCHUC" Multiplicity="1" />
+          <End Role="CHITIETHOATDONG" Type="Self.CHITIETHOATDONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VIENCHUC">
+              <PropertyRef Name="VC_MA" />
+            </Principal>
+            <Dependent Role="CHITIETHOATDONG">
+              <PropertyRef Name="VC_MA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KHENTHUO_NHAN_VIENCHUC">
+          <End Role="VIENCHUC" Type="Self.VIENCHUC" Multiplicity="1" />
+          <End Role="KHENTHUONGKYLUAT" Type="Self.KHENTHUONGKYLUAT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VIENCHUC">
+              <PropertyRef Name="VC_MA" />
+            </Principal>
+            <Dependent Role="KHENTHUONGKYLUAT">
+              <PropertyRef Name="VC_MA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VIENCHUC_RELATIONS_BOMON">
+          <End Role="BOMON" Type="Self.BOMON" Multiplicity="1" />
+          <End Role="VIENCHUC" Type="Self.VIENCHUC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BOMON">
+              <PropertyRef Name="BM_MA" />
+            </Principal>
+            <Dependent Role="VIENCHUC">
+              <PropertyRef Name="BM_MA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NLCS_QLHDCDModelStoreContainer">
+          <EntitySet Name="BOMON" EntityType="Self.BOMON" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CHITIETCHUCVU" EntityType="Self.CHITIETCHUCVU" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CHITIETHOATDONG" EntityType="Self.CHITIETHOATDONG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CHUCVU" EntityType="Self.CHUCVU" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HOATDONG" EntityType="Self.HOATDONG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KHENTHUONGKYLUAT" EntityType="Self.KHENTHUONGKYLUAT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KHOA" EntityType="Self.KHOA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VIENCHUC" EntityType="Self.VIENCHUC" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_BOMON_RELATIONS_KHOA" Association="Self.FK_BOMON_RELATIONS_KHOA">
+            <End Role="KHOA" EntitySet="KHOA" />
+            <End Role="BOMON" EntitySet="BOMON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CHITIETC_CHITIETCH_CHUCVU" Association="Self.FK_CHITIETC_CHITIETCH_CHUCVU">
+            <End Role="CHUCVU" EntitySet="CHUCVU" />
+            <End Role="CHITIETCHUCVU" EntitySet="CHITIETCHUCVU" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CHITIETC_CHITIETCH_VIENCHUC" Association="Self.FK_CHITIETC_CHITIETCH_VIENCHUC">
+            <End Role="VIENCHUC" EntitySet="VIENCHUC" />
+            <End Role="CHITIETCHUCVU" EntitySet="CHITIETCHUCVU" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CHITIETH_CHITIETHO_HOATDONG" Association="Self.FK_CHITIETH_CHITIETHO_HOATDONG">
+            <End Role="HOATDONG" EntitySet="HOATDONG" />
+            <End Role="CHITIETHOATDONG" EntitySet="CHITIETHOATDONG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CHITIETH_CHITIETHO_VIENCHUC" Association="Self.FK_CHITIETH_CHITIETHO_VIENCHUC">
+            <End Role="VIENCHUC" EntitySet="VIENCHUC" />
+            <End Role="CHITIETHOATDONG" EntitySet="CHITIETHOATDONG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KHENTHUO_NHAN_VIENCHUC" Association="Self.FK_KHENTHUO_NHAN_VIENCHUC">
+            <End Role="VIENCHUC" EntitySet="VIENCHUC" />
+            <End Role="KHENTHUONGKYLUAT" EntitySet="KHENTHUONGKYLUAT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VIENCHUC_RELATIONS_BOMON" Association="Self.FK_VIENCHUC_RELATIONS_BOMON">
+            <End Role="BOMON" EntitySet="BOMON" />
+            <End Role="VIENCHUC" EntitySet="VIENCHUC" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NLCS_QLHDCDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BOMON">
+          <Key>
+            <PropertyRef Name="BM_MA" />
+          </Key>
+          <Property Name="BM_MA" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="K_MA" Type="Int32" Nullable="false" />
+          <Property Name="BM_TEN" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="KHOA" Relationship="Self.FK_BOMON_RELATIONS_KHOA" FromRole="BOMON" ToRole="KHOA" />
+          <NavigationProperty Name="VIENCHUCs" Relationship="Self.FK_VIENCHUC_RELATIONS_BOMON" FromRole="BOMON" ToRole="VIENCHUC" />
+        </EntityType>
+        <EntityType Name="CHITIETCHUCVU">
+          <Key>
+            <PropertyRef Name="VC_MA" />
+            <PropertyRef Name="CV_MA" />
+          </Key>
+          <Property Name="VC_MA" Type="String" MaxLength="7" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="CV_MA" Type="Int32" Nullable="false" />
+          <Property Name="NGAYBATDAUCHUCVU" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="NGAYKETTHUCCHUCVU" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="CHUCVU" Relationship="Self.FK_CHITIETC_CHITIETCH_CHUCVU" FromRole="CHITIETCHUCVU" ToRole="CHUCVU" />
+          <NavigationProperty Name="VIENCHUC" Relationship="Self.FK_CHITIETC_CHITIETCH_VIENCHUC" FromRole="CHITIETCHUCVU" ToRole="VIENCHUC" />
+        </EntityType>
+        <EntityType Name="CHITIETHOATDONG">
+          <Key>
+            <PropertyRef Name="VC_MA" />
+            <PropertyRef Name="HD_MA" />
+          </Key>
+          <Property Name="VC_MA" Type="String" MaxLength="7" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="HD_MA" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="HOATDONG" Relationship="Self.FK_CHITIETH_CHITIETHO_HOATDONG" FromRole="CHITIETHOATDONG" ToRole="HOATDONG" />
+          <NavigationProperty Name="VIENCHUC" Relationship="Self.FK_CHITIETH_CHITIETHO_VIENCHUC" FromRole="CHITIETHOATDONG" ToRole="VIENCHUC" />
+          <Property Name="GHICHU" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CHUCVU">
+          <Key>
+            <PropertyRef Name="CV_MA" />
+          </Key>
+          <Property Name="CV_MA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CV_TEN" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="CHITIETCHUCVUs" Relationship="Self.FK_CHITIETC_CHITIETCH_CHUCVU" FromRole="CHUCVU" ToRole="CHITIETCHUCVU" />
+        </EntityType>
+        <EntityType Name="HOATDONG">
+          <Key>
+            <PropertyRef Name="HD_MA" />
+          </Key>
+          <Property Name="HD_MA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BM_MA" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="HD_TEN" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="CHITIETHOATDONGs" Relationship="Self.FK_CHITIETH_CHITIETHO_HOATDONG" FromRole="HOATDONG" ToRole="CHITIETHOATDONG" />
+          <Property Name="HD_MOTA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HD_SOTIET" Type="Int32" />
+          <Property Name="HD_NGAYDIENRA" Type="DateTime" Precision="0" />
+          <Property Name="HD_FILE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="KHENTHUONGKYLUAT">
+          <Key>
+            <PropertyRef Name="KT_MA" />
+          </Key>
+          <Property Name="KT_MA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VC_MA" Type="String" MaxLength="7" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="KT_NOIDUNG" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KT_THUONG" Type="Double" Nullable="false" />
+          <NavigationProperty Name="VIENCHUC" Relationship="Self.FK_KHENTHUO_NHAN_VIENCHUC" FromRole="KHENTHUONGKYLUAT" ToRole="VIENCHUC" />
+        </EntityType>
+        <EntityType Name="KHOA">
+          <Key>
+            <PropertyRef Name="K_MA" />
+          </Key>
+          <Property Name="K_MA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="K_TEN" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="BOMONs" Relationship="Self.FK_BOMON_RELATIONS_KHOA" FromRole="KHOA" ToRole="BOMON" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="VIENCHUC">
+          <Key>
+            <PropertyRef Name="VC_MA" />
+          </Key>
+          <Property Name="VC_MA" Type="String" MaxLength="7" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="BM_MA" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="VC_ANH" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="VC_HOTEN" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="VC_NGAYSINH" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="VC_GIOITINH" Type="Boolean" Nullable="false" />
+          <Property Name="VC_DIACHI" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="VC_SDT" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="VC_EMAIL" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="VC_LUONG" Type="Double" Nullable="false" />
+          <Property Name="VC_QUYENSD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="VC_MATKHAU" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="BOMON" Relationship="Self.FK_VIENCHUC_RELATIONS_BOMON" FromRole="VIENCHUC" ToRole="BOMON" />
+          <NavigationProperty Name="CHITIETCHUCVUs" Relationship="Self.FK_CHITIETC_CHITIETCH_VIENCHUC" FromRole="VIENCHUC" ToRole="CHITIETCHUCVU" />
+          <NavigationProperty Name="CHITIETHOATDONGs" Relationship="Self.FK_CHITIETH_CHITIETHO_VIENCHUC" FromRole="VIENCHUC" ToRole="CHITIETHOATDONG" />
+          <NavigationProperty Name="KHENTHUONGKYLUATs" Relationship="Self.FK_KHENTHUO_NHAN_VIENCHUC" FromRole="VIENCHUC" ToRole="KHENTHUONGKYLUAT" />
+        </EntityType>
+        <Association Name="FK_BOMON_RELATIONS_KHOA">
+          <End Role="KHOA" Type="Self.KHOA" Multiplicity="1" />
+          <End Role="BOMON" Type="Self.BOMON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHOA">
+              <PropertyRef Name="K_MA" />
+            </Principal>
+            <Dependent Role="BOMON">
+              <PropertyRef Name="K_MA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VIENCHUC_RELATIONS_BOMON">
+          <End Role="BOMON" Type="Self.BOMON" Multiplicity="1" />
+          <End Role="VIENCHUC" Type="Self.VIENCHUC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BOMON">
+              <PropertyRef Name="BM_MA" />
+            </Principal>
+            <Dependent Role="VIENCHUC">
+              <PropertyRef Name="BM_MA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CHITIETC_CHITIETCH_CHUCVU">
+          <End Role="CHUCVU" Type="Self.CHUCVU" Multiplicity="1" />
+          <End Role="CHITIETCHUCVU" Type="Self.CHITIETCHUCVU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CHUCVU">
+              <PropertyRef Name="CV_MA" />
+            </Principal>
+            <Dependent Role="CHITIETCHUCVU">
+              <PropertyRef Name="CV_MA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CHITIETC_CHITIETCH_VIENCHUC">
+          <End Role="VIENCHUC" Type="Self.VIENCHUC" Multiplicity="1" />
+          <End Role="CHITIETCHUCVU" Type="Self.CHITIETCHUCVU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VIENCHUC">
+              <PropertyRef Name="VC_MA" />
+            </Principal>
+            <Dependent Role="CHITIETCHUCVU">
+              <PropertyRef Name="VC_MA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CHITIETH_CHITIETHO_HOATDONG">
+          <End Role="HOATDONG" Type="Self.HOATDONG" Multiplicity="1" />
+          <End Role="CHITIETHOATDONG" Type="Self.CHITIETHOATDONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HOATDONG">
+              <PropertyRef Name="HD_MA" />
+            </Principal>
+            <Dependent Role="CHITIETHOATDONG">
+              <PropertyRef Name="HD_MA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CHITIETH_CHITIETHO_VIENCHUC">
+          <End Role="VIENCHUC" Type="Self.VIENCHUC" Multiplicity="1" />
+          <End Role="CHITIETHOATDONG" Type="Self.CHITIETHOATDONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VIENCHUC">
+              <PropertyRef Name="VC_MA" />
+            </Principal>
+            <Dependent Role="CHITIETHOATDONG">
+              <PropertyRef Name="VC_MA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KHENTHUO_NHAN_VIENCHUC">
+          <End Role="VIENCHUC" Type="Self.VIENCHUC" Multiplicity="1" />
+          <End Role="KHENTHUONGKYLUAT" Type="Self.KHENTHUONGKYLUAT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VIENCHUC">
+              <PropertyRef Name="VC_MA" />
+            </Principal>
+            <Dependent Role="KHENTHUONGKYLUAT">
+              <PropertyRef Name="VC_MA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NLCS_QLHDCDEntities12" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BOMONs" EntityType="Self.BOMON" />
+          <EntitySet Name="CHITIETCHUCVUs" EntityType="Self.CHITIETCHUCVU" />
+          <EntitySet Name="CHITIETHOATDONGs" EntityType="Self.CHITIETHOATDONG" />
+          <EntitySet Name="CHUCVUs" EntityType="Self.CHUCVU" />
+          <EntitySet Name="HOATDONGs" EntityType="Self.HOATDONG" />
+          <EntitySet Name="KHENTHUONGKYLUATs" EntityType="Self.KHENTHUONGKYLUAT" />
+          <EntitySet Name="KHOAs" EntityType="Self.KHOA" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="VIENCHUCs" EntityType="Self.VIENCHUC" />
+          <AssociationSet Name="FK_BOMON_RELATIONS_KHOA" Association="Self.FK_BOMON_RELATIONS_KHOA">
+            <End Role="KHOA" EntitySet="KHOAs" />
+            <End Role="BOMON" EntitySet="BOMONs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VIENCHUC_RELATIONS_BOMON" Association="Self.FK_VIENCHUC_RELATIONS_BOMON">
+            <End Role="BOMON" EntitySet="BOMONs" />
+            <End Role="VIENCHUC" EntitySet="VIENCHUCs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CHITIETC_CHITIETCH_CHUCVU" Association="Self.FK_CHITIETC_CHITIETCH_CHUCVU">
+            <End Role="CHUCVU" EntitySet="CHUCVUs" />
+            <End Role="CHITIETCHUCVU" EntitySet="CHITIETCHUCVUs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CHITIETC_CHITIETCH_VIENCHUC" Association="Self.FK_CHITIETC_CHITIETCH_VIENCHUC">
+            <End Role="VIENCHUC" EntitySet="VIENCHUCs" />
+            <End Role="CHITIETCHUCVU" EntitySet="CHITIETCHUCVUs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CHITIETH_CHITIETHO_HOATDONG" Association="Self.FK_CHITIETH_CHITIETHO_HOATDONG">
+            <End Role="HOATDONG" EntitySet="HOATDONGs" />
+            <End Role="CHITIETHOATDONG" EntitySet="CHITIETHOATDONGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CHITIETH_CHITIETHO_VIENCHUC" Association="Self.FK_CHITIETH_CHITIETHO_VIENCHUC">
+            <End Role="VIENCHUC" EntitySet="VIENCHUCs" />
+            <End Role="CHITIETHOATDONG" EntitySet="CHITIETHOATDONGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KHENTHUO_NHAN_VIENCHUC" Association="Self.FK_KHENTHUO_NHAN_VIENCHUC">
+            <End Role="VIENCHUC" EntitySet="VIENCHUCs" />
+            <End Role="KHENTHUONGKYLUAT" EntitySet="KHENTHUONGKYLUATs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="NLCS_QLHDCDModelStoreContainer" CdmEntityContainer="NLCS_QLHDCDEntities12">
+          <EntitySetMapping Name="BOMONs">
+            <EntityTypeMapping TypeName="NLCS_QLHDCDModel.BOMON">
+              <MappingFragment StoreEntitySet="BOMON">
+                <ScalarProperty Name="BM_MA" ColumnName="BM_MA" />
+                <ScalarProperty Name="K_MA" ColumnName="K_MA" />
+                <ScalarProperty Name="BM_TEN" ColumnName="BM_TEN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CHITIETCHUCVUs">
+            <EntityTypeMapping TypeName="NLCS_QLHDCDModel.CHITIETCHUCVU">
+              <MappingFragment StoreEntitySet="CHITIETCHUCVU">
+                <ScalarProperty Name="VC_MA" ColumnName="VC_MA" />
+                <ScalarProperty Name="CV_MA" ColumnName="CV_MA" />
+                <ScalarProperty Name="NGAYBATDAUCHUCVU" ColumnName="NGAYBATDAUCHUCVU" />
+                <ScalarProperty Name="NGAYKETTHUCCHUCVU" ColumnName="NGAYKETTHUCCHUCVU" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CHITIETHOATDONGs">
+            <EntityTypeMapping TypeName="NLCS_QLHDCDModel.CHITIETHOATDONG">
+              <MappingFragment StoreEntitySet="CHITIETHOATDONG">
+                <ScalarProperty Name="GHICHU" ColumnName="GHICHU" />
+                <ScalarProperty Name="VC_MA" ColumnName="VC_MA" />
+                <ScalarProperty Name="HD_MA" ColumnName="HD_MA" />
+                </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CHUCVUs">
+            <EntityTypeMapping TypeName="NLCS_QLHDCDModel.CHUCVU">
+              <MappingFragment StoreEntitySet="CHUCVU">
+                <ScalarProperty Name="CV_MA" ColumnName="CV_MA" />
+                <ScalarProperty Name="CV_TEN" ColumnName="CV_TEN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HOATDONGs">
+            <EntityTypeMapping TypeName="NLCS_QLHDCDModel.HOATDONG">
+              <MappingFragment StoreEntitySet="HOATDONG">
+                <ScalarProperty Name="HD_FILE" ColumnName="HD_FILE" />
+                <ScalarProperty Name="HD_NGAYDIENRA" ColumnName="HD_NGAYDIENRA" />
+                <ScalarProperty Name="HD_SOTIET" ColumnName="HD_SOTIET" />
+                <ScalarProperty Name="HD_MOTA" ColumnName="HD_MOTA" />
+                <ScalarProperty Name="HD_MA" ColumnName="HD_MA" />
+                <ScalarProperty Name="BM_MA" ColumnName="BM_MA" />
+                <ScalarProperty Name="HD_TEN" ColumnName="HD_TEN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KHENTHUONGKYLUATs">
+            <EntityTypeMapping TypeName="NLCS_QLHDCDModel.KHENTHUONGKYLUAT">
+              <MappingFragment StoreEntitySet="KHENTHUONGKYLUAT">
+                <ScalarProperty Name="KT_MA" ColumnName="KT_MA" />
+                <ScalarProperty Name="VC_MA" ColumnName="VC_MA" />
+                <ScalarProperty Name="KT_NOIDUNG" ColumnName="KT_NOIDUNG" />
+                <ScalarProperty Name="KT_THUONG" ColumnName="KT_THUONG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KHOAs">
+            <EntityTypeMapping TypeName="NLCS_QLHDCDModel.KHOA">
+              <MappingFragment StoreEntitySet="KHOA">
+                <ScalarProperty Name="K_MA" ColumnName="K_MA" />
+                <ScalarProperty Name="K_TEN" ColumnName="K_TEN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="NLCS_QLHDCDModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VIENCHUCs">
+            <EntityTypeMapping TypeName="NLCS_QLHDCDModel.VIENCHUC">
+              <MappingFragment StoreEntitySet="VIENCHUC">
+                <ScalarProperty Name="VC_MA" ColumnName="VC_MA" />
+                <ScalarProperty Name="BM_MA" ColumnName="BM_MA" />
+                <ScalarProperty Name="VC_ANH" ColumnName="VC_ANH" />
+                <ScalarProperty Name="VC_HOTEN" ColumnName="VC_HOTEN" />
+                <ScalarProperty Name="VC_NGAYSINH" ColumnName="VC_NGAYSINH" />
+                <ScalarProperty Name="VC_GIOITINH" ColumnName="VC_GIOITINH" />
+                <ScalarProperty Name="VC_DIACHI" ColumnName="VC_DIACHI" />
+                <ScalarProperty Name="VC_SDT" ColumnName="VC_SDT" />
+                <ScalarProperty Name="VC_EMAIL" ColumnName="VC_EMAIL" />
+                <ScalarProperty Name="VC_LUONG" ColumnName="VC_LUONG" />
+                <ScalarProperty Name="VC_QUYENSD" ColumnName="VC_QUYENSD" />
+                <ScalarProperty Name="VC_MATKHAU" ColumnName="VC_MATKHAU" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

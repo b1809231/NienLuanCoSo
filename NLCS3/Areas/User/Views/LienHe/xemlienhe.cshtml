@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewBag.Title = "xemlienhe";
+    Layout = "~/Areas/User/Views/Shared/_Layout.cshtml";
+}
+<br />
+<br />
+<br />
+
+
+<section id="contact" class="contact">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>LIÊN HỆ</h2>          
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-5 d-flex align-items-stretch">
+            <div class="info">
+              <div class="address">
+                <i class="bi bi-geo-alt"></i>
+                <h4>Vị trí</h4>
+                <p>Khu II, Đ. 3/2, Xuân Khánh, Ninh Kiều, Cần Thơ</p>
+              </div>
+
+              <div class="email">
+                <i class="bi bi-envelope"></i>
+                <h4>Email:</h4>
+                <p>office@cit.ctu.edu.vn<p>
+                 </div>
+
+              <div class="phone">
+                <i class="bi bi-phone"></i>
+                <h4>Call:</h4>
+                <p>0292 3 831301</p>
+              </div>
+
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.830291314357!2d105.76679195055212!3d10.030859375218737!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a0883d21f664f9%3A0x67f88a60aa3d4272!2sKhoa%20C%C3%B4ng%20ngh%E1%BB%87%20th%C3%B4ng%20tin%20%26%20Truy%E1%BB%81n%20th%C3%B4ng%20-%20%C4%90HCT%20(College%20of%20Information%20%26%20Communication%20Technology)!5e0!3m2!1svi!2s!4v1622992139408!5m2!1svi!2s" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+
+          </div>
+
+          <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
+            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label for="name">Your Name</label>
+                  <input type="text" name="name" class="form-control" id="name" required>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="name">Your Email</label>
+                  <input type="email" class="form-control" name="email" id="email" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="name">Subject</label>
+                <input type="text" class="form-control" name="subject" id="subject" required>
+              </div>
+              <div class="form-group">
+                <label for="name">Message</label>
+                <textarea class="form-control" name="message" rows="10" required></textarea>
+              </div>
+              <div class="my-3">
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Your message has been sent. Thank you!</div>
+              </div>
+              <div class="text-center"><button type="submit">Send Message</button></div>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </section>

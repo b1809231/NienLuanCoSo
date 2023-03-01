@@ -1,0 +1,93 @@
+﻿@model IEnumerable<NLCS3.Models.HOATDONG>
+
+@{
+    ViewBag.Title = "hd_chuathamgia";
+    Layout = "~/Areas/User/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+<br />
+<br />
+<center>
+    <div class="d-block border" style="width:1500px; ;background-color:lightblue">
+        <br />
+        <h2>DANH SÁCH CÁC HOẠT ĐỘNG CHƯA ĐĂNG KÝ THAM GIA</h2>
+        <br />
+        @using (Html.BeginForm())
+        {
+            <p style="text-align:right">
+
+                @Html.TextBox("search") <input type="submit" value="Tìm kiếm" style="border-radius: 5px ; background-color:beige" />
+            </p>
+        }
+        <p class="btn btn-primary" style="background-color:gold">
+            @Html.ActionLink("Xem tất cả Hoạt Động", "chitiet", new { /* id = Model.PrimaryKey */ })
+        </p>
+        <br />
+        <hr />
+        <table class="table">
+            <tr>
+                <th>
+                    Mã họat động
+                </th>
+                <th>
+                    Bộ môn quản lý
+                </th>
+                <th>
+                    Tên hoạt động
+                </th>
+                <th width="400px">
+                    Mô tả
+                </th>
+                <th>
+                    Số tiết
+                </th>
+                <th>
+                    Ngày diễn ra
+                </th>
+                <th>
+                    File
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HD_MA)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BM_MA)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HD_TEN)
+                    </td>
+                    <td width="400px">
+                        @Html.DisplayFor(modelItem => item.HD_MOTA)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HD_SOTIET)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HD_NGAYDIENRA)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HD_FILE)
+                    </td>
+                    <th class="sorting">
+                        @Html.ActionLink("Download", "Download", new { fileName = item.HD_FILE })
+                    </th>
+                    <td style="text-align:center">
+                        <p class="btn btn-primary" style="background-color:burlywood">
+                            @Html.ActionLink("Đăng ký", "hd_dangky", new { mahd = item.HD_MA })
+                        </p>
+                    </td>
+
+                </tr>
+            }
+
+        </table>
+    </div>
+</center>

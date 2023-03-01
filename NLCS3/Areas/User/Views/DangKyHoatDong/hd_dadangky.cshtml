@@ -1,0 +1,78 @@
+﻿@model IEnumerable<NLCS3.Models.HOATDONG>
+
+@{
+    ViewBag.Title = "hd_dadangky";
+    Layout = "~/Areas/User/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+<br />
+<br />
+<center>
+    <div class="d-block border" style="width:1200px ;height:1000px;background-color:lightblue">
+        <br />
+        <h2>Hoạt động đã đăng ký</h2>
+        <hr />
+        <p class="btn btn-primary" style="background-color:gold">
+            @Html.ActionLink("Chi Tiết Các Hoạt Động", "chitiet", new { /* id = Model.PrimaryKey */ })
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    Mã họat động
+                </th>
+                <th>
+                    Bộ môn quản lý
+                </th>
+                <th>
+                    Tên hoạt động
+                </th>
+                <th>
+                    Mô tả 
+                </th>
+                <th>
+                    Số tiết
+                </th>
+                <th>
+                    Ngày diễn ra
+                </th>
+                <th>
+                    File
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HD_MA)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BM_MA)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HD_TEN)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HD_MOTA)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HD_SOTIET)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HD_NGAYDIENRA)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HD_FILE)
+                    </td>
+                    
+                </tr>
+            }
+
+        </table>
+        <br />
+        <hr />
+    </div>
+</center>

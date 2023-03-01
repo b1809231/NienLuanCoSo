@@ -1,0 +1,102 @@
+﻿@model IEnumerable<NLCS3.Models.HOATDONG>
+
+@{
+    ViewBag.Title = "list_hoatdong";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-header">
+    <div class="container-fluid">
+        <div class="container-fluid">
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/Admin/Home/Index">Trang chủ</a></li>
+                <li class="breadcrumb-item ">Quản lý</li>
+                <li class="breadcrumb-item active">Viên chức</li>
+                <li style="text-align: right">
+                </li>
+            </ul>
+            @using (Html.BeginForm())
+            {
+                <p style="text-align:right">
+
+                    @Html.TextBox("search") <input type="submit" value="Tìm kiếm" style="border-radius: 5px ; background-color:beige" />
+                </p>
+            }
+        </div>
+    </div>
+</div>
+<div class="col-lg-12">
+    <div class="block" style="background-color:lightgray; color:black">
+
+        <h2 style="text-align:center">DANH  SÁCH HOẠT ĐỘNG</h2>
+        <p class="btn btn-primary" style="background-color:antiquewhite;text-align:right">
+            @Html.ActionLink("Thêm", "create_hoatdong")
+        </p>
+        <table class="table" style="background-color:lightgray; color:black">
+            <tr>
+                <th>
+                    Mã hoạt động
+                </th>
+                <th>
+                    Mã bộ môn
+                </th>
+                <th>
+                    Tên hoạt động
+                </th>
+                <th>
+                    Mô tả
+                </th>
+                <th>
+                    Số tiết
+                </th>
+                <th>
+                    Ngày diễn ra
+                </th>
+                <th>
+                    File
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HD_MA)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BM_MA)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HD_TEN)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HD_MOTA)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HD_SOTIET)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HD_NGAYDIENRA)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HD_FILE)
+                    </td>
+                    <th class="sorting">
+                        @Html.ActionLink("Download", "Download", new { fileName = item.HD_FILE })
+                    </th>
+                    <td>
+                        <p class="btn btn-primary" style="background-color:lightgreen">
+                            @Html.ActionLink("Sửa", "edit_hoatdong", new { id = item.HD_MA })
+                        </p>
+
+                        <p class="btn btn-primary" style="background-color: lightsalmon">
+                            @Html.ActionLink("Xóa", "delete_hoatdong", new { id = item.HD_MA })
+                        </p>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>

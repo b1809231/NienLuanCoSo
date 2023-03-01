@@ -1,0 +1,183 @@
+﻿@model NLCS3.Models.VIENCHUC
+
+@{
+    ViewBag.Title = "create_vienchuc";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@if (ViewBag.Error)
+{
+    <script>
+        Swal.fire({
+            title: 'Lỗi!',
+            text: 'Mời nhập lại',
+            icon: 'error',
+            confirmButtonText: 'Thoát'
+        })
+    </script>
+}
+<div class="page-header">
+    <div class="container-fluid">
+        <div class="container-fluid">
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/Admin/Home/Index">Trang chủ</a></li>
+                <li class="breadcrumb-item ">Quản lý</li>
+                <li class="breadcrumb-item active">Viên chức</li>
+                <li style="text-align: right">
+                </li>
+            </ul>
+            
+        </div>
+    </div>
+</div>
+<div class="col-lg-10" style="color:black">
+    <div class="block" style="background-color:lightgray; color:black">
+        <div class="panel-heading" style="font-weight:bold; color:coral;font-size:20px; text-align:center">
+            Nhập thông tin viên chức
+        </div>
+
+
+        @using (Html.BeginForm("create_vienchuc", "VienChuc", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal" style="color:black">
+                
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group" style="color:black" >
+                    <label class="control-label col-md-2" style="font-weight:bold">
+                        Mã viên chức:
+                    </label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.VC_MA, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.VC_MA, "Bắt buộc nhập", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group" style="color:black">
+                    <label class="control-label col-md-2" style="font-weight:bold">
+                        Bộ môn:
+                    </label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.BM_MA, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.BM_MA, "Bắt buộc nhập", new { @class = "text-danger" })
+                       @* @Html.DropDownListFor(model => model.BM_MA, ViewBag.CateList as SelectList, new { @class = "form-control" })*@
+                    </div>
+
+                </div>
+
+                <div class="form-group" style="color:black">
+                    <label class="control-label col-md-2" style="font-weight:bold">
+                        Ảnh đại diện:
+                    </label>
+                    <div class="col-md-10">
+                        <input type="file" name="f">
+                        @ViewBag.ThongBao
+                    </div>
+                </div>
+
+                <div class="form-group" style="color:black">
+                    <label class="control-label col-md-2" style="font-weight:bold">
+                        Họ và tên:
+                    </label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.VC_HOTEN, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.VC_HOTEN, "Bắt buộc nhập", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group" style="color:black">
+                    <label class="control-label col-md-2" style="font-weight:bold">
+                        Ngày sinh:
+                    </label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.VC_NGAYSINH, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                        @Html.ValidationMessageFor(model => model.VC_NGAYSINH, "Bắt buộc nhập", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group" style="color:black">
+                    <label class="control-label col-md-2">
+                        Giới tính:
+                    </label>
+                    <div class="col-md-10">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.VC_GIOITINH)
+                            @Html.ValidationMessageFor(model => model.VC_GIOITINH, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group" style="color:black">
+                    <label class="control-label col-md-2">
+                        Địa chỉ:
+                    </label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.VC_DIACHI, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.VC_DIACHI, "Bắt buộc nhập", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group" style="color:black">
+                    <label class="control-label col-md-2" style="font-weight:bold">
+                        Số điện thoại:
+                    </label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.VC_SDT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.VC_SDT, "Bắt buộc nhập", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group" style="color:black">
+                    <label class="control-label col-md-2">
+                        Email:
+                    </label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.VC_EMAIL, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.VC_EMAIL, "Bắt buộc nhập", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group" style="color:black">
+                    <label class="control-label col-md-2">
+                        Lương:
+                    </label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.VC_LUONG, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.VC_LUONG, "Bắt buộc nhập", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group" style="color:black">
+                    <label class="control-label col-md-2">
+                        Quyền sử dụng:
+                    </label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.VC_QUYENSD, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.VC_QUYENSD, "Bắt buộc nhập", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group" style="color:black">
+                    <label class="control-label col-md-2" style="font-weight:bold">
+                        Mật khẩu:
+                    </label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.VC_MATKHAU, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.VC_MATKHAU, "Bắt buộc nhập", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default" style="background-color:burlywood" /> |
+                        @Html.ActionLink("Về danh sách", "list_vienchuc")
+                    </div>
+                </div>
+            </div>
+        }
+</div>
+ </div>

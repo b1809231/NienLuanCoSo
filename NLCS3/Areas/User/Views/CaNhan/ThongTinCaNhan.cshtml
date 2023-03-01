@@ -1,0 +1,123 @@
+﻿@model NLCS3.Models.VIENCHUC
+
+@{
+    ViewBag.Title = "ThongTinCaNhan";
+    Layout = "~/Areas/User/Views/Shared/_Layout.cshtml";
+}
+
+
+<br />
+<br />
+<br />
+<br />
+<center>
+    <div class="d-block border" style="width:500px;background-color:lightblue">
+        <br />
+        <h2>THÔNG TIN CÁ NHÂN</h2>
+        <hr />
+        <table class="table">
+            <tr>
+                <td style="font-weight:bold">
+                    Mã viên chức:
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.VC_MA)
+                </td>
+            </tr>
+            <tr>
+                <td style="font-weight:bold">
+                    Ảnh đại diện:
+                </td>
+                <td>
+                    <img src="@Url.Content("~/Content/Image/VienChuc/"+Model.VC_ANH)" alt="vc_anh" width="100" height="100" />
+                </td>
+            </tr>
+            <tr>
+                <td style="font-weight:bold">
+                    Họ và tên:
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.VC_HOTEN)
+                </td>
+            </tr>
+            <tr>
+                <td style="font-weight:bold">
+                    Ngày sinh:
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.VC_NGAYSINH)
+                </td>
+            </tr>
+            <tr>
+                <td style="font-weight:bold">
+                    Giới tính:
+                </td>
+                <td style="font-weight:bold">
+                    @((bool)Model.VC_GIOITINH ? "Nam" : "Nữ")
+                </td>
+            </tr>
+            <tr>
+                <td style="font-weight:bold">
+                    Địa chỉ:
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.VC_DIACHI)
+                </td>
+            </tr>
+            <tr>
+                <td style="font-weight:bold">
+                    Số điện thoại:
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.VC_SDT)
+                </td>
+            </tr>
+            <tr>
+                <td style="font-weight:bold">
+                    Email:
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.VC_EMAIL)
+                </td>
+            </tr>
+            <tr>
+                <td style="font-weight:bold">
+                    Lương:
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.VC_LUONG)
+                </td>
+            </tr>
+            <tr>
+                <td style="font-weight:bold">
+                    Quyền sử dụng:
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.VC_QUYENSD)
+                </td>
+            </tr>
+
+            <tr>
+                <td style="font-weight:bold">
+                    Mật khẩu:
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.VC_MATKHAU)
+                </td>
+            </tr>
+
+            <tr>
+                <td style="font-weight:bold">
+                    Bộ môn:
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.BOMON.BM_TEN)
+                </td>
+            </tr>
+        </table>      
+
+        <p class="btn btn-primary" style="background-color:gold">
+            @Html.ActionLink("Chỉnh sửa", "Sua_CaNhan", new { /* id = Model.PrimaryKey */ })
+        </p>
+    </div>
+</center>

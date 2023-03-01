@@ -1,0 +1,52 @@
+﻿@model NLCS3.Models.BOMON
+
+@{
+    ViewBag.Title = "delete_bomon";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="panel-heading" style="font-weight:bold;font-size:20px">
+    <img src="~/Content/Image/error.png" width:"80px" height:"80px" />
+    Bạn có muốn xóa?
+</div>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            MÃ BỘ MÔN
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BM_MA)
+        </dd>
+
+        <dt>
+            KHOA
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.K_MA)
+        </dd>
+
+        <dt>
+            TÊN
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BM_TEN)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" style="background-color:antiquewhite;" /> |
+            @Html.ActionLink("Về danh sách", "list_bomon")
+        </div>
+    }
+</div>
+
